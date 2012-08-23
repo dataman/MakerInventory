@@ -14,7 +14,8 @@
             CellPadding="3" DataSourceID="SqlDataSource1" GridLines="Vertical">
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
-                <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
+                <asp:BoundField DataField="DateTime" HeaderText="Date" 
+                    SortExpression="DateTime" />
                 <asp:BoundField DataField="UserName" HeaderText="UserName" 
                     SortExpression="UserName" />
                 <asp:BoundField DataField="PartNo" HeaderText="PartNo" 
@@ -55,6 +56,7 @@
 <p>
     Upload my inventory changes?
     <asp:FileUpload ID="FileUpload1" runat="server" />
+&nbsp;<asp:Button ID="Button5" runat="server" Text="HELP" />
 &nbsp;<asp:Button ID="Button3" runat="server" Text="GO" />
     <br />
     <br />

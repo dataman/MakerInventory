@@ -17,10 +17,9 @@
                 SortExpression="PartNo" />
             <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer" 
                 SortExpression="Manufacturer" />
-            <asp:BoundField DataField="Package" HeaderText="Package" 
-                SortExpression="Package" />
-            <asp:BoundField DataField="Datasheet" HeaderText="Datasheet" 
-                SortExpression="Datasheet" />
+            <asp:HyperLinkField DataNavigateUrlFields="Datasheet" 
+                DataNavigateUrlFormatString="{0}" HeaderText="Datasheet" Target="Datasheet" 
+                Text="Link" />
         </Columns>
         <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
         <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />

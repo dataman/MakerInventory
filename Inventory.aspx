@@ -16,17 +16,18 @@
             DataSourceID="dsInv" GridLines="Vertical">
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
-                <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer" 
-                    SortExpression="Manufacturer" />
                 <asp:BoundField DataField="PartNo" HeaderText="PartNo" 
                     SortExpression="PartNo" />
-                <asp:BoundField DataField="Package" HeaderText="Package" 
-                    SortExpression="Package" />
-                <asp:BoundField DataField="Frequency" HeaderText="Frequency" 
-                    SortExpression="Frequency" />
-                <asp:BoundField DataField="Qty" HeaderText="Qty" SortExpression="Qty" />
-                <asp:HyperLinkField DataNavigateUrlFields="Datasheet" 
-                    DataNavigateUrlFormatString="{0}" HeaderText="Datasheet" Text="Link" />
+                <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer" 
+                    SortExpression="Manufacturer" />
+                <asp:BoundField DataField="Qty" HeaderText="Qty" 
+                    SortExpression="Qty" />
+                <asp:BoundField DataField="Cost" HeaderText="Cost" 
+                    SortExpression="Cost" />
+                <asp:BoundField DataField="DataSheet" HeaderText="DataSheet" 
+                    SortExpression="DataSheet" />
+                <asp:HyperLinkField DataNavigateUrlFields="Datasheet" HeaderText="Datasheet" 
+                    Target="Datasheet" Text="Link" />
             </Columns>
             <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
             <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
@@ -47,7 +48,8 @@
         <asp:SqlDataSource ID="dsInv" runat="server" 
             ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
             
-            SelectCommand="SELECT [UserID], [PartNo], [Manufacturer], [Package], [Datasheet], [Qty], [Frequency] FROM [vwUserInv] WHERE ([UserID] = @UserID)">
+            
+            SelectCommand="SELECT [PartNo], [Manufacturer], [Qty], [Cost], [DataSheet], [UserID] FROM [vwInventory] WHERE ([UserID] = @UserID) ORDER BY [PartNo]">
             <SelectParameters>
                 <asp:ControlParameter ControlID="ddSearch" Name="UserID" 
                     PropertyName="SelectedValue" Type="Object" />

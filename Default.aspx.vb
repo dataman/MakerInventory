@@ -11,4 +11,8 @@ Partial Class _Default
         Session("Search") = ddUserID.SelectedValue
         Server.Transfer("Inventory.ASPX")
     End Sub
+
+    Protected Sub Button5_Click(sender As Object, e As System.EventArgs) Handles Button5.Click
+        Server.Transfer("Upload.ASPX")
+    End Sub
 End Class
