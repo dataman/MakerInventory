@@ -8,7 +8,7 @@
 bin/
 tmp/
 *.tmp
-*.bak
+# *.bak -- sql backups, ignore this ignore
 *.swp
 *~.nib
 local.properties
