@@ -7,7 +7,7 @@ Partial Class Upload
     Protected Sub Page_LoadComplete(sender As Object, e As System.EventArgs) Handles Me.LoadComplete
         If FileUpload1.HasFile Then
             ' Read Uploaded File
-            Dim oStream As System.IO.FileStream = FileUpload1.FileContent
+            Dim oStream As System.IO.Stream = FileUpload1.FileContent
             Dim oReader = New System.IO.StreamReader(oStream)
             While oReader.Peek() >= 0
                 Dim sLine = oReader.ReadLine
@@ -19,14 +19,14 @@ Partial Class Upload
                     Dim oCmd As New SqlCommand("spUpdateFromFile")
                     oCmd.CommandType = CommandType.StoredProcedure
                     oCmd.Parameters.Add(New SqlParameter("User", My.User.Name))
-                    oCmd.Parameters.Add(New SqlParameter("PartNo", lookup(sFields, 1)))
-                    oCmd.Parameters.Add(New SqlParameter("Qty", lookup(sFields, 2)))
-                    oCmd.Parameters.Add(New SqlParameter("Cost", lookup(sFields, 3)))
-                    oCmd.Parameters.Add(New SqlParameter("Vendor", lookup(sFields, 4)))
-                    oCmd.Parameters.Add(New SqlParameter("SKU", lookup(sFields, 5)))
-                    oCmd.Parameters.Add(New SqlParameter("URL", lookup(sFields, 6)))
-                    oCmd.Parameters.Add(New SqlParameter("Manufacturer", lookup(sFields, 7)))
-                    oCmd.Parameters.Add(New SqlParameter("Datasheet", lookup(sFields, 8)))
+                    oCmd.Parameters.Add(New SqlParameter("PartNo", lookup(sFields, 0)))
+                    oCmd.Parameters.Add(New SqlParameter("Qty", lookup(sFields, 1)))
+                    oCmd.Parameters.Add(New SqlParameter("Cost", lookup(sFields, 2)))
+                    oCmd.Parameters.Add(New SqlParameter("Vendor", lookup(sFields, 3)))
+                    oCmd.Parameters.Add(New SqlParameter("SKU", lookup(sFields, 4)))
+                    oCmd.Parameters.Add(New SqlParameter("URL", lookup(sFields, 5)))
+                    oCmd.Parameters.Add(New SqlParameter("Manufacturer", lookup(sFields, 6)))
+                    oCmd.Parameters.Add(New SqlParameter("Datasheet", lookup(sFields, 7)))
                     Call ExecSQL(oCmd)
                 End If
             End While
@@ -37,10 +37,10 @@ Partial Class Upload
 
     Private Function lookup(data As String(), index As Integer) As Object
         Try
-            Return data(index)
+            Return data(index).ToString.Trim
         Catch
         End Try
-        Return Nothing
+        Return ""
     End Function
 
     Private Function ExecSQL(oCmd As SqlCommand) As Object

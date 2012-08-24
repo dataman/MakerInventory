@@ -16,18 +16,17 @@
             DataSourceID="dsInv" GridLines="Vertical">
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
-                <asp:BoundField DataField="PartNo" HeaderText="PartNo" 
-                    SortExpression="PartNo" />
+                <asp:HyperLinkField DataNavigateUrlFields="PartID" 
+                    DataNavigateUrlFormatString="Part.ASPX?ID={0}" DataTextField="PartNo" 
+                    HeaderText="PartNo" SortExpression="PartNo" />
                 <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer" 
                     SortExpression="Manufacturer" />
                 <asp:BoundField DataField="Qty" HeaderText="Qty" 
                     SortExpression="Qty" />
                 <asp:BoundField DataField="Cost" HeaderText="Cost" 
                     SortExpression="Cost" />
-                <asp:BoundField DataField="DataSheet" HeaderText="DataSheet" 
-                    SortExpression="DataSheet" />
                 <asp:HyperLinkField DataNavigateUrlFields="Datasheet" HeaderText="Datasheet" 
-                    Target="Datasheet" Text="Link" />
+                    Target="Datasheet" DataTextField="DataSheet" />
             </Columns>
             <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
             <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
@@ -49,7 +48,8 @@
             ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
             
             
-            SelectCommand="SELECT [PartNo], [Manufacturer], [Qty], [Cost], [DataSheet], [UserID] FROM [vwInventory] WHERE ([UserID] = @UserID) ORDER BY [PartNo]">
+            
+            SelectCommand="SELECT PartID, [PartNo], [Manufacturer], [Qty], [Cost], [DataSheet], [UserID] FROM [vwInventory] WHERE ([UserID] = @UserID) ORDER BY [PartNo]">
             <SelectParameters>
                 <asp:ControlParameter ControlID="ddSearch" Name="UserID" 
                     PropertyName="SelectedValue" Type="Object" />

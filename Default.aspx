@@ -55,10 +55,8 @@
     </p>
 <p>
     Upload my inventory changes?
-    <asp:FileUpload ID="FileUpload1" runat="server" />
-&nbsp;<asp:Button ID="Button5" runat="server" Text="HELP" />
-&nbsp;<asp:Button ID="Button3" runat="server" Text="GO" />
-    <br />
+    &nbsp;<asp:Button ID="Button5" runat="server" Text="GO" />
+&nbsp;<br />
     <br />
     Broswe my inventory?&nbsp;
     <asp:Button ID="Button4" runat="server" Text="GO" />

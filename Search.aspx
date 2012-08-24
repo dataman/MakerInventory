@@ -13,13 +13,13 @@
         CellPadding="3" DataSourceID="SqlDataSource1" GridLines="Vertical">
         <AlternatingRowStyle BackColor="#DCDCDC" />
         <Columns>
-            <asp:BoundField DataField="PartNo" HeaderText="PartNo" 
-                SortExpression="PartNo" />
+            <asp:HyperLinkField DataNavigateUrlFields="PartID" 
+                DataNavigateUrlFormatString="part.aspx?id={0}" DataTextField="PartNo" 
+                HeaderText="PartNo" />
             <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer" 
                 SortExpression="Manufacturer" />
-            <asp:HyperLinkField DataNavigateUrlFields="Datasheet" 
-                DataNavigateUrlFormatString="{0}" HeaderText="Datasheet" Target="Datasheet" 
-                Text="Link" />
+            <asp:HyperLinkField DataNavigateUrlFields="Datasheet" HeaderText="Datasheet" Target="Datasheet" 
+                Text="Link" DataTextField="Datasheet" />
         </Columns>
         <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
         <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
@@ -31,6 +31,8 @@
         <SortedDescendingCellStyle BackColor="#CAC9C9" />
         <SortedDescendingHeaderStyle BackColor="#000065" />
     </asp:GridView>
+        <br />
+        <br />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
         ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
         SelectCommand="SELECT * FROM [vwPartsSearch] WHERE ([PartNo] LIKE '%' + @PartNo + '%')">
