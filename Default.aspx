@@ -40,33 +40,35 @@
     <br />
         <strong>What do you want to do today?</strong><br />
     </p>
-<p>
     Search for a part?&nbsp;
     <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="btnSearch" runat="server" Text="GO" />
+&nbsp;<asp:Button ID="btnSearch" runat="server" Text="GO" /><br />
+
     <br />
-    </p>
-<p>
     Browse other Maker's Inventories?&nbsp;
     <asp:DropDownList ID="ddUserID" runat="server" DataSourceID="SqlDataSource2" 
         DataTextField="UserName" DataValueField="UserId">
-    </asp:DropDownList>
-&nbsp;<asp:Button ID="Button2" runat="server" Text="GO" />
-    </p>
-<p>
+    </asp:DropDownList>&nbsp;<asp:Button ID="Button2" runat="server" Text="GO" />    <br />
+    <br />
     Upload my inventory changes?
     &nbsp;<asp:Button ID="Button5" runat="server" Text="GO" />
 &nbsp;<br />
     <br />
     Broswe my inventory?&nbsp;
-    <asp:Button ID="Button4" runat="server" Text="GO" />
+    <asp:Button ID="Button4" runat="server" Text="GO" />    <br />
     <br />
-    </p>
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
     ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
-    SelectCommand="SELECT * FROM [vwLastActivity]"></asp:SqlDataSource>
+    SelectCommand="spLastActivity" SelectCommandType="StoredProcedure">
+    <SelectParameters>
+        <asp:ControlParameter ControlID="hdUser" Name="User" PropertyName="Value" 
+            Type="String" />
+    </SelectParameters>
+    </asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
         ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
-        SelectCommand="SELECT [UserName], [UserId] FROM [vw_aspnet_Users] ORDER BY [UserName]">
+        
+        SelectCommand="SELECT [UserName], [UserId] FROM Settings ORDER BY [UserName]">
     </asp:SqlDataSource>
+    <asp:HiddenField ID="hdUser" runat="server" Value="PUBLIC" />
 </asp:Content>

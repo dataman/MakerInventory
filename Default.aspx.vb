@@ -4,22 +4,28 @@ Partial Class _Default
 
     Protected Sub Button1_Click(sender As Object, e As System.EventArgs) Handles btnSearch.Click
         Session("Search") = txtSearch.Text
-        Server.Transfer("Search.ASPX")
+        Server.Transfer("~/User/Search.ASPX")
     End Sub
 
     Protected Sub Button2_Click(sender As Object, e As System.EventArgs) Handles Button2.Click
         Session("Search") = ddUserID.SelectedValue
-        Server.Transfer("Inventory.ASPX")
+        Server.Transfer("~/User/Inventory.ASPX")
     End Sub
 
     Protected Sub Button5_Click(sender As Object, e As System.EventArgs) Handles Button5.Click
-        Server.Transfer("Upload.ASPX")
+        Server.Transfer("~/User/Upload.ASPX")
     End Sub
 
     Protected Sub Button4_Click(sender As Object, e As System.EventArgs) Handles Button4.Click
-        If Not My.User.IsAuthenticated Then Return
-        Session("Search") = My.User.Name.ToString
-        Server.Transfer("Inventory.ASPX")
+        Session("Search") = Nothing
+        Session("UserSearch") = My.User.Name
+        Server.Transfer("~/User/Inventory.ASPX")
     End Sub
 
+    Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+        If Page.IsPostBack Then
+            If Not My.User.IsAuthenticated Then Server.Transfer("Error.ASPX")
+        End If
+        If My.User.IsAuthenticated Then hdUser.Value = My.User.Name : Page.DataBind()
+    End Sub
 End Class

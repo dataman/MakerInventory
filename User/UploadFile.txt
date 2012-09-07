@@ -1,0 +1,5 @@
+#Part, Qty, Cost, Vendor, SKU, Manufacturer, Datasheet
+#Not all data needs to be completed.
+#Lines beginning with # are ignored.
+#RESISTOR 10 ohm 1/4W CARBON, 10, 0.028, JameCo, 690865, ValuePro, http://www.jameco.com/Jameco/Products/ProdDS/690865.pdf
+#RESISTOR 47 ohm 1/4W CARBON, 10, 0.028
